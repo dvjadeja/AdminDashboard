@@ -4,14 +4,17 @@ import {
   Container,
   Row,
   Col,
-  Form,
-  InputGroup,
-  FormControl,
+  Button,
+  Table,
+  Badge,
+  Dropdown,
+  ButtonGroup,
 } from "react-bootstrap";
-import { FcSalesPerformance } from "react-icons/fc";
-import { BsCalendarDate } from "react-icons/bs";
+import { FaThList, FaEdit, FaTrashAlt } from "react-icons/fa";
+import { useHistory } from "react-router";
 
 const Sales = () => {
+  const history = useHistory();
   const [inactive, setInactive] = useState(false);
   return (
     <>
@@ -31,8 +34,8 @@ const Sales = () => {
         </div>
         <Container fluid style={{ margin: "20px 0" }} className="main-content">
           <Row className="mb-2 title_row">
-            <Col xs={10} lg={11} className="ps-0 fs-4 pt-1 title_col">
-              <FcSalesPerformance />
+            <Col xs={10} lg={18} className="ps-0 fs-4 pt-1 title_col">
+              <FaThList />
               <p
                 style={{
                   display: "inline-block",
@@ -40,240 +43,169 @@ const Sales = () => {
                   marginTop: "2px",
                 }}
               >
-                Sales Invoice
+                Manage Exports Sales
               </p>
             </Col>
+            <Col>
+              <Button
+                variant="success"
+                onClick={() => history.push("/sales/export/create")}
+              >
+                Create
+              </Button>{" "}
+            </Col>
           </Row>
-          <Form>
-            <Row className="mb-1">
-              <Col>
-                <Form.Group className="mb-3" controlId="formGroupEmail">
-                  <Form.Label>
-                    <b>Invoice Type:</b>
-                  </Form.Label>
-                  <Form.Control
-                    as="select"
-                    defaultValue="Tax Invoice"
-                    disabled={true}
-                  >
-                    <option>Tax Invoice</option>
-                    <option>...</option>
-                  </Form.Control>
-                </Form.Group>
-              </Col>
 
-              <Col>
-                <Form.Group className="mb-3" controlId="formGroupPassword">
-                  <Form.Label>
-                    <b>Invoice</b>
-                  </Form.Label>
-                  <Form.Control value="1/TX/DCH/21-22" disabled={true} />
-                </Form.Group>
-              </Col>
+          <Table bordered hover>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Date</th>
+                <th>Bill No</th>
+                <th>Customer</th>
+                <th>Net Amount</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="text-center">1</td>
+                <td>2021/04/01</td>
+                <td>1/TX/KBR/21-22</td>
+                <td>AKGITKDA RONS</td>
+                <td>7080.00</td>
+                <td>
+                  <h6 className="text-center">
+                    <Badge bg="success" style={{ backgroundColor: "#198754" }}>
+                      Paid
+                    </Badge>
+                  </h6>
+                </td>
+                <td className="d-flex justify-content-around">
+                  <div className="d-flex justify-content-center align-items-center">
+                    <FaEdit style={{ cursor: "pointer" }} />
+                  </div>
+                  <Dropdown as={ButtonGroup}>
+                    <Button variant="success" size="sm">
+                      Print
+                    </Button>
 
-              <Col>
-                <Form.Group className="mb-3" controlId="formGroupEmail">
-                  <Form.Label>
-                    <b>Customer Name:</b>
-                  </Form.Label>
-                  <Form.Control as="select" defaultValue="--Select Customer--">
-                    <option>---Select Customer---</option>
-                    <option>Sadguru Demo</option>
-                    <option>ABC CARGO EXPORTS</option>
-                    <option>CONNECT IT HUB</option>
-                    <option>AKGITKDA RONS</option>
-                    <option>PATEL RIES</option>
-                    <option>CHETAN PATEL</option>
-                    <option>DEMO PATEL</option>
-                    <option>MUNDRA CFS TRADING</option>
-                    <option>TRADE OF MARKETING</option>
-                  </Form.Control>
-                </Form.Group>
-              </Col>
-
-              <Col>
-                <Form.Group className="mb-3" controlId="formGroupEmail">
-                  <Form.Label>
-                    <b>Ship To:</b>
-                  </Form.Label>
-                  <Form.Control as="select" defaultValue="--Select Ship to--">
-                    <option>---Select Ship to---</option>
-                    <option>Sadguru Demo</option>
-                    <option>ABC CARGO EXPORTS</option>
-                    <option>CONNECT IT HUB</option>
-                    <option>AKGITKDA RONS</option>
-                    <option>PATEL RIES</option>
-                    <option>CHETAN PATEL</option>
-                    <option>DEMO PATEL</option>
-                    <option>MUNDRA CFS TRADING</option>
-                    <option>TRADE OF MARKETING</option>
-                  </Form.Control>
-                </Form.Group>
-              </Col>
-
-              <Col>
-                <Form.Group className="mb-3" controlId="formGroupPassword">
-                  <Form.Label>
-                    <b>Invoice Date:</b>
-                  </Form.Label>
-                  <InputGroup className="mb-3">
-                    <InputGroup.Text>
-                      <BsCalendarDate />
-                    </InputGroup.Text>
-                    <FormControl
-                      type="datetime-local"
-                      timeFormat="YYYY-MM-DD HH:mm"
-                      aria-label="First name"
-                      placeholder="Select Invoice Date"
+                    <Dropdown.Toggle
+                      split
+                      variant="success"
+                      id="dropdown-split-basic"
+                      size="sm"
                     />
-                  </InputGroup>
-                </Form.Group>
-              </Col>
-            </Row>
 
-            <Row className="mb-1">
-              <Col>
-                <Form.Group className="mb-3" controlId="formGroupPassword">
-                  <Form.Label>
-                    <b>SB / BE No. & Date :</b>
-                  </Form.Label>
-                  <Form.Control placeholder="Enter SB / BE No. & Date :" />
-                </Form.Group>
-              </Col>
-              <Col>
-                <Form.Group className="mb-3" controlId="formGroupPassword">
-                  <Form.Label>
-                    <b>Ex. Invoice No :</b>
-                  </Form.Label>
-                  <Form.Control placeholder="Ex. Invoice No " />
-                </Form.Group>
-              </Col>
-              <Col>
-                <Form.Group className="mb-3" controlId="formGroupPassword">
-                  <Form.Label>
-                    <b>BL No :</b>
-                  </Form.Label>
-                  <Form.Control placeholder="BL No" />
-                </Form.Group>
-              </Col>
-              <Col>
-                <Form.Group className="mb-3" controlId="formGroupPassword">
-                  <Form.Label>
-                    <b>Gross Weight :</b>
-                  </Form.Label>
-                  <Form.Control placeholder="Gross Weight" />
-                </Form.Group>
-              </Col>
-              <Col>
-                <Form.Group className="mb-3" controlId="formGroupPassword">
-                  <Form.Label>
-                    <b>Net Weight :</b>
-                  </Form.Label>
-                  <Form.Control placeholder="Net Weight" />
-                </Form.Group>
-              </Col>
-            </Row>
+                    <Dropdown.Menu>
+                      <Dropdown.Item href="#/action-1">Original</Dropdown.Item>
+                      <Dropdown.Item href="#/action-2">Duplicate</Dropdown.Item>
+                      <Dropdown.Item href="#/action-3">
+                        Triplicate
+                      </Dropdown.Item>
+                      <Dropdown.Item href="#/action-4">
+                        Send Email
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                  <div className="d-flex justify-content-center align-items-center">
+                    <FaTrashAlt style={{ cursor: "pointer" }} />
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td className="text-center">2</td>
+                <td>2021/03/31</td>
+                <td>7/CN/KBR/20-21</td>
+                <td>PATEL RIES</td>
+                <td>53224.00</td>
+                <td>
+                  <h6 className="text-center">
+                    <Badge bg="success" style={{ backgroundColor: "#198754" }}>
+                      Paid
+                    </Badge>
+                  </h6>
+                </td>
+                <td className="d-flex justify-content-around">
+                  <div className="d-flex justify-content-center align-items-center">
+                    <FaEdit style={{ cursor: "pointer" }} />
+                  </div>
+                  <Dropdown as={ButtonGroup}>
+                    <Button variant="success" size="sm">
+                      Print
+                    </Button>
 
-            <Row className="mb-1">
-              <Col>
-                <Form.Group className="mb-3" controlId="formGroupPassword">
-                  <Form.Label>
-                    <b>Shipping Line</b>
-                  </Form.Label>
-                  <Form.Control placeholder="Enter Shipping Line" />
-                </Form.Group>
-              </Col>
+                    <Dropdown.Toggle
+                      split
+                      variant="success"
+                      id="dropdown-split-basic"
+                      size="sm"
+                    />
 
-              <Col>
-                <Form.Group className="mb-3" controlId="formGroupPassword">
-                  <Form.Label>
-                    <b>Port of Loading :</b>
-                  </Form.Label>
-                  <Form.Control placeholder="Enter Port of Loading " />
-                </Form.Group>
-              </Col>
+                    <Dropdown.Menu>
+                      <Dropdown.Item href="#/action-1">Original</Dropdown.Item>
+                      <Dropdown.Item href="#/action-2">Duplicate</Dropdown.Item>
+                      <Dropdown.Item href="#/action-3">
+                        Triplicate
+                      </Dropdown.Item>
+                      <Dropdown.Item href="#/action-4">
+                        Send Email
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                  <div className="d-flex justify-content-center align-items-center">
+                    <FaTrashAlt style={{ cursor: "pointer" }} />
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>2021/03/31</td>
+                <td>1223/TX/KBR/20-21</td>
+                <td>CHETAN PATEL</td>
+                <td>18266.00</td>
+                <td>
+                  <h6 className="text-center">
+                    <Badge bg="success" style={{ backgroundColor: "#198754" }}>
+                      Paid
+                    </Badge>
+                  </h6>
+                </td>
+                <td className="d-flex justify-content-around">
+                  <div className="d-flex justify-content-center align-items-center">
+                    <FaEdit style={{ cursor: "pointer" }} />
+                  </div>
+                  <Dropdown as={ButtonGroup}>
+                    <Button variant="success" size="sm">
+                      Print
+                    </Button>
 
-              <Col>
-                <Form.Group className="mb-3" controlId="formGroupPassword">
-                  <Form.Label>
-                    <b>Port of Discharge :</b>
-                  </Form.Label>
-                  <Form.Control placeholder="Port of Discharge" />
-                </Form.Group>
-              </Col>
+                    <Dropdown.Toggle
+                      split
+                      variant="success"
+                      id="dropdown-split-basic"
+                      size="sm"
+                    />
 
-              <Col>
-                <Form.Group className="mb-3" controlId="formGroupPassword">
-                  <Form.Label>
-                    <b>Final Destination :</b>
-                  </Form.Label>
-                  <Form.Control placeholder="Final Destination" />
-                </Form.Group>
-              </Col>
-
-              <Col>
-                <Form.Group className="mb-3" controlId="formGroupPassword">
-                  <Form.Label>
-                    <b>Commodity :</b>
-                  </Form.Label>
-                  <Form.Control placeholder="Enter Commodity" />
-                </Form.Group>
-              </Col>
-            </Row>
-
-            <Row className="mb-1">
-              <Col>
-                <Form.Group className="mb-3" controlId="formGroupPassword">
-                  <Form.Label>
-                    <b>Ex Rate :</b>
-                  </Form.Label>
-                  <Form.Control placeholder="Ex Rate" />
-                </Form.Group>
-              </Col>
-
-              <Col>
-                <Form.Group className="mb-3" controlId="formGroupPassword">
-                  <Form.Label>
-                    <b>Vessel / VOY :</b>
-                  </Form.Label>
-                  <Form.Control placeholder="Enter Vessel / VOY " />
-                </Form.Group>
-              </Col>
-
-              <Col>
-                <Form.Group className="mb-3" controlId="formGroupPassword">
-                  <Form.Label>
-                    <b>Number of Containers :</b>
-                  </Form.Label>
-                  <Form.Control placeholder="Enter Number of Containers" />
-                </Form.Group>
-              </Col>
-
-              <Col>
-                <Form.Group className="mb-3" controlId="formGroupEmail">
-                  <Form.Label>
-                    <b>Invoice Type</b>
-                  </Form.Label>
-                  <Form.Control as="select" defaultValue="--Select GST--">
-                    <option>Select GST</option>
-                    <option>GST</option>
-                    <option>IGST</option>
-                  </Form.Control>
-                </Form.Group>
-              </Col>
-            </Row>
-
-            <Row>
-              <Col>
-                <Form.Group className="mb-3" controlId="formGroupPassword">
-                  <Form.Label>
-                    <b>Containers Details :</b>
-                  </Form.Label>
-                  <Form.Control placeholder="Enter Containers Details" />
-                </Form.Group>
-              </Col>
-            </Row>
-          </Form>
+                    <Dropdown.Menu>
+                      <Dropdown.Item href="#/action-1">Original</Dropdown.Item>
+                      <Dropdown.Item href="#/action-2">Duplicate</Dropdown.Item>
+                      <Dropdown.Item href="#/action-3">
+                        Triplicate
+                      </Dropdown.Item>
+                      <Dropdown.Item href="#/action-4">
+                        Send Email
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                  <div className="d-flex justify-content-center align-items-center">
+                    <FaTrashAlt style={{ cursor: "pointer" }} />
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </Table>
         </Container>
       </div>
     </>

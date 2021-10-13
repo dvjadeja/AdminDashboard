@@ -49,6 +49,12 @@ li {
   cursor: pointer;
 }
 
+.side-menu .top-section .toggle-menu-btn.fixed {
+  margin-top: 10px;
+  margin-left: 7px;
+  position: sticky;
+}
+
 .side-menu.inactive .top-section .toggle-menu-btn {
   right: -50px;
 }

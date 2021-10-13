@@ -60,13 +60,16 @@ const Sidebar = (props) => {
   return (
     <>
       <Container fluid>
-        <div className={`side-menu ${inactive ? "inactive" : ""}`}>
+        <div
+          className={`side-menu ${inactive ? "inactive" : ""}`}
+          style={{ position: "fixed" }}
+        >
           <div className="top-section">
             <div className="logo">
               <img src={logo} alt="logo" />
             </div>
             <div
-              className="toggle-menu-btn"
+              className={`toggle-menu-btn ${inactive ? "fixed" : ""}`}
               onClick={() => setInactive(!inactive)}
             >
               {inactive ? (

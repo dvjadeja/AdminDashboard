@@ -50,7 +50,7 @@ body {
   }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 380px) {
   .company_title p {
     font-size: 1.4rem;
   }

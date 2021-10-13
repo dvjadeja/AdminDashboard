@@ -12,6 +12,7 @@ import {
 } from "react-bootstrap";
 import { FaThList, FaEdit, FaTrashAlt } from "react-icons/fa";
 import { useHistory } from "react-router";
+import { tableData } from "../utils";
 
 const Sales = () => {
   const history = useHistory();
@@ -69,52 +70,69 @@ const Sales = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td className="text-center">1</td>
-                <td>2021/04/01</td>
-                <td>1/TX/KBR/21-22</td>
-                <td>AKGITKDA RONS</td>
-                <td>7080.00</td>
-                <td>
-                  <h6 className="text-center">
-                    <Badge bg="success" style={{ backgroundColor: "#198754" }}>
-                      Paid
-                    </Badge>
-                  </h6>
-                </td>
-                <td className="d-flex justify-content-around">
-                  <div className="d-flex justify-content-center align-items-center">
-                    <FaEdit style={{ cursor: "pointer" }} />
-                  </div>
-                  <Dropdown as={ButtonGroup}>
-                    <Button variant="success" size="sm">
-                      Print
-                    </Button>
+              {tableData.map((data, index) => (
+                <tr key={index}>
+                  <td className="text-center">{data.id}</td>
+                  <td>{data.date}</td>
+                  <td>{data.billNo}</td>
+                  <td>{data.customer}</td>
+                  <td>{data.amount}</td>
+                  <td>
+                    {data.status === "Paid" ? (
+                      <h6 className="text-center">
+                        <Badge style={{ backgroundColor: "#198754" }}>
+                          {data.status}
+                        </Badge>
+                      </h6>
+                    ) : (
+                      <h6 className="text-center">
+                        <Badge style={{ backgroundColor: "#dc3545" }}>
+                          {data.status}
+                        </Badge>
+                      </h6>
+                    )}
+                  </td>
+                  <td className="d-flex justify-content-around">
+                    <div className="d-flex justify-content-center align-items-center">
+                      <FaEdit style={{ cursor: "pointer" }} />
+                    </div>
+                    <Dropdown as={ButtonGroup}>
+                      <Button variant="success" size="sm">
+                        Print
+                      </Button>
 
-                    <Dropdown.Toggle
-                      split
-                      variant="success"
-                      id="dropdown-split-basic"
-                      size="sm"
-                    />
+                      <Dropdown.Toggle
+                        split
+                        variant="success"
+                        id="dropdown-split-basic"
+                        size="sm"
+                      />
 
-                    <Dropdown.Menu>
-                      <Dropdown.Item href="#/action-1">Original</Dropdown.Item>
-                      <Dropdown.Item href="#/action-2">Duplicate</Dropdown.Item>
-                      <Dropdown.Item href="#/action-3">
-                        Triplicate
-                      </Dropdown.Item>
-                      <Dropdown.Item href="#/action-4">
-                        Send Email
-                      </Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
-                  <div className="d-flex justify-content-center align-items-center">
-                    <FaTrashAlt style={{ cursor: "pointer" }} />
-                  </div>
-                </td>
-              </tr>
-              <tr>
+                      <Dropdown.Menu>
+                        <Dropdown.Item href="#/action-1">
+                          Original
+                        </Dropdown.Item>
+                        <Dropdown.Item href="#/action-2">
+                          Duplicate
+                        </Dropdown.Item>
+                        <Dropdown.Item href="#/action-3">
+                          Triplicate
+                        </Dropdown.Item>
+                        <Dropdown.Item href="#/action-4">
+                          Send Email
+                        </Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                    <div className="d-flex justify-content-center align-items-center">
+                      <FaTrashAlt style={{ cursor: "pointer" }} />
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+
+          {/* <tr>
                 <td className="text-center">2</td>
                 <td>2021/03/31</td>
                 <td>7/CN/KBR/20-21</td>
@@ -205,7 +223,7 @@ const Sales = () => {
                 </td>
               </tr>
             </tbody>
-          </Table>
+          </Table> */}
         </Container>
       </div>
     </>

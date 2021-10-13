@@ -28,7 +28,7 @@ const menuItems = [
     name: "Transaction",
     to: "",
     subMenus: [
-      { name: "Sales", to: "/sales/export" },
+      { name: "Sales", to: "/sales/export/create" },
       { name: "Purchase", to: "/transaction/purchase" },
       { name: "Sale Payments", to: "/transaction/salespayment" },
       { name: "Purchase Payment", to: "/transaction/purchasepayment" },

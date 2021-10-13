@@ -27,7 +27,7 @@ const Task = () => {
               position: "relative",
               height: "min-content",
             }}
-            onClick={() => history.push("/sales/export")}
+            onClick={() => history.push("/sales/export/create")}
           >
             <Row style={{ color: "white" }}>
               <Col xs={6}>

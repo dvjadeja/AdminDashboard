@@ -50,7 +50,7 @@ const Sales = () => {
             <Col>
               <Button
                 variant="success"
-                onClick={() => history.push("/sales/export/create")}
+                onClick={() => history.push("/sales/export/main")}
               >
                 Create
               </Button>{" "}

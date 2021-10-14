@@ -71,3 +71,12 @@ body {
   margin-left: 10px;
   transform: translate(0px, 4px);
 }
+
+.sales-card-hover {
+  cursor: pointer;
+  transition: 0.4s ease-in-out;
+}
+
+.sales-card-hover:hover {
+  box-shadow: -1px 6px 89px 2px rgba(30, 19, 19, 0.82);
+}
